@@ -40,6 +40,10 @@ Computed in 0.03795 seconds
 pi is approximately 3.1415926542564683, Error is 0.0000000006666752
 Computed in 0.1124 seconds
 
+- squeue customized:
+squeue -o "%i %u %p %a %j %D %t %r %S %L %Q"
+
+
 
 
 
