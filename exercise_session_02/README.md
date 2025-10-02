@@ -44,6 +44,35 @@ Computed in 0.1124 seconds
 squeue -o "%i %u %p %a %j %D %t %r %S %L %Q"
 
 
+**Exercise 4**
+- OpenMP with OMP_NUM_THREADS=1 and 10
+OMP_NUM_THREADS=1 
+Thread rank: 0
+pi is approximately 3.1415926542566006, Error is 0.0000000006668075
+Computed in 4.449 seconds -> slower??
+
+OMP_NUM_THREADS=10
+Thread rank: 0
+Thread rank: 3
+Thread rank: 9
+Thread rank: 8
+Thread rank: 1
+Thread rank: 6
+Thread rank: 4
+Thread rank: 5
+Thread rank: 2
+Thread rank: 7
+pi is approximately 3.1415926542564856, Error is 0.0000000006666925
+Computed in 0.4462 seconds
+
+OMP_NUM_THREADS=1 is slower since there are less parallel jobs.
+
+- Change -O3 to -O0 in the OpenMP version (Makefile) and run it again with 128 threads:
+pi is approximately 3.1461132582725404, Error is 0.0045206046827473
+Computed in 23.58 seconds
+
+Flag -O0 is much slower than -O3 and the error is more off.
+
 
 
 
