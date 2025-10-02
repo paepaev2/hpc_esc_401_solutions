@@ -26,3 +26,20 @@ debug     up    1-10          30:00    256 2:64:2       1 down*      nid002245
 debug     up    1-10          30:00    256 2:64:2      11 idle       nid[002236-002244,002246-002247
 
 To print only any user's job: squeue -u username
+
+- To redirect output and error:
+#SBATCH --output=output.log
+#SBATCH --error=errors.log
+
+- sbatch run_mpi.job
+Process rank: 0
+pi is approximately 3.1415926542564838, Error is 0.0000000006666907
+Computed in 0.03795 seconds
+
+- sbatch run_omp.job
+pi is approximately 3.1415926542564683, Error is 0.0000000006666752
+Computed in 0.1124 seconds
+
+
+
+

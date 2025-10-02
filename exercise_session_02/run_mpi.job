@@ -1,0 +1,14 @@
+#!/bin/bash -l
+#SBATCH --job-name="cpi_mpi_job"
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=128
+#SBATCH --ntasks-per-core=1
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=debug
+#SBATCH --constraint=mc
+#SBATCH --account=uzh8
+#SBATCH --output=output_mpi.log
+#SBATCH --error=errors_mpi.log
+
+srun ./cpi_mpi
