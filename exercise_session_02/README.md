@@ -4,6 +4,9 @@ In this session, you will compile and run your first programs on Eiger. This dir
 
 **Exercise 2**
 
+- cc command is used to compile .c file.
+- flag -O3 optimizes the process. if we change this to -O0, the process will be slower since there is no optimization.
+
 - module list: list all loaded modules
 [eiger][mrojanap@eiger-ln001 exercise_session_02]$ module list
 
