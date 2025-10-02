@@ -1,2 +1,28 @@
 # Exercise Session 02 #
-In this session, you will compile and run your first programs on Eiger. This directory contains two versions of the code that were parallelized using MPI or OpenMP.
+In this session, you will compile and run your first programs on Eiger. This directory contains two versions of the code that were parallelized using MPI or OpenMP
+
+
+**Exercise 2**
+
+- module list: list all loaded modules
+[eiger][mrojanap@eiger-ln001 exercise_session_02]$ module list
+
+Currently Loaded Modules:
+  1) craype-x86-rome                                 6) cce/17.0.0           11) perftools-base/23.12.0
+  2) libfabric/1.22.0                                7) cray-dsmml/0.2.2     12) cpe/23.12
+  3) craype-network-ofi                              8) cray-libsci/23.12.5  13) cray/23.12
+  4) xpmem/2.9.6-1.1_20240510205610__g087dc11fc19d   9) cray-mpich/8.1.28
+  5) PrgEnv-cray/8.5.0                              10) craype/2.7.30
+
+- module avail: list all modules that can be loaded in the current environment
+- module spider: list all modules, including dependencies and available versions
+
+
+**Exercise 3**
+- run sinfo:
+[eiger][mrojanap@eiger-ln001 exercise_session_02]$ sinfo -p debug
+PARTITION AVAIL JOB_SIZE  TIMELIMIT   CPUS  S:C:T   NODES STATE      NODELIST
+debug     up    1-10          30:00    256 2:64:2       1 down*      nid002245
+debug     up    1-10          30:00    256 2:64:2      11 idle       nid[002236-002244,002246-002247
+
+To print only any user's job: squeue -u username
