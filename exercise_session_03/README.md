@@ -50,5 +50,18 @@ Execution time: 1.087 seconds <br>
 *At -O3*, extra unrolling/inlining were tried, but they didn’t improve runtime beyond what -O2 already achieved.
 - To make it faster: improve algorithm, parallelize across cores using OpenMP
 
+- Where did you insert the line?: before the for loop computing sum (see commit change in sum.c) <br>
+- How did you compile? Provide your code and the job script. <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ gcc -O2 -fopenmp -c -o sum_parallel.o sum.c -lm
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ gcc -fopenmp -o sum_parallel sum_parallel.o gettime.o -lm
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ ls
+cpi    cpi_mpi	  cpi_mpi.o  gettime.c	gettime.o  README.md  sum_O0	sum_O1	  sum_O2    sum_O3    sum_parallel
+cpi.c  cpi_mpi.c  cpi.o      gettime.h	Makefile   sum.c      sum_O0.o	sum_O1.o  sum_O2.o  sum_O3.o  sum_parallel.o
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ srun sum_parallel
+sum=10022429072.089407
+Execution time: 0.0653 seconds
+
+
+
 
 

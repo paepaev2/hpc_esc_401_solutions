@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name=sum_parallel
+#SBATCH --ntasks=1
+#SBATCH --time=00:05:00
+#SBATCH --partition=normal
+#SBATCH --output=output_sum_parallel.log
+#SBATCH --error=error_sum_parallel.log
+
+gcc -O2 -fopenmp -c -o sum_parallel.o sum.c -lm
+gcc -fopenmp -o sum_parallel sum_parallel.o gettime.o -lm
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+srun sum_parallel
