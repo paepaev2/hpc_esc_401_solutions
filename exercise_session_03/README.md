@@ -61,6 +61,33 @@ cpi.c  cpi_mpi.c  cpi.o      gettime.h	Makefile   sum.c      sum_O0.o	sum_O1.o  
 sum=10022429072.089407
 Execution time: 0.0653 seconds
 
+- Run the code with various number of cpus: <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ sbatch --cpus-per-task=1 run_sum_parallel.job
+Submitted batch job 5754685 <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ cat output_sum_parallel.log
+sum=10022429073.341873 <br>
+Execution time: 1.126 seconds <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ sbatch --cpus-per-task=2 run_sum_parallel.job
+Submitted batch job 5754686 <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ cat output_sum_parallel.log
+sum=10022429072.974625 <br>
+Execution time: 0.8896 seconds <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ sbatch --cpus-per-task=4 run_sum_parallel.job
+Submitted batch job 5754687 <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ cat output_sum_parallel.log
+sum=10022429071.947245 <br>
+Execution time: 0.4831 seconds <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ sbatch --cpus-per-task=8 run_sum_parallel.job
+Submitted batch job 5754688 <br>
+[eiger][mrojanap@eiger-ln002 exercise_session_03]$ cat output_sum_parallel.log
+sum=10022429072.466204 <br>
+Execution time: 0.387 seconds <br>
+
+- Discuss plot_speedup.png <br>
+The plot_speedup shows good initial speedup as the number of CPUs increases from 1 to 4, then the speedup gradually increases instead. The curve's slope noticeably decreases, showing that adding more CPUs beyond 4 yields only minimal additional speedup. This might be because the parallelization overhead or unparallelized code is beginning to dominate the execution time.
+
+
+
 
 
 
