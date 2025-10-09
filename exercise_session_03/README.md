@@ -87,6 +87,10 @@ Execution time: 0.387 seconds <br>
 The plot_speedup shows good initial speedup as the number of CPUs increases from 1 to 4, then the speedup gradually increases instead. The curve's slope noticeably decreases, showing that adding more CPUs beyond 4 yields only minimal additional speedup. This might be because the parallelization overhead or unparallelized code is beginning to dominate the execution time.
 
 
+<br>
+**Exercise 3 [Scaling behaviour]** <br>
+- Superlinear speedup happens when a parallel program runs more than p times faster with p processes. The most likely reason is because of the cache effects. When splitting the code among several processors, each process gets a small piece of data that can fit perfectly inside its cache. The original single-process program had to constantly fetch slow data from the main memory, but the parallel program mostly uses the quick cache. This huge time saving from avoiding slow memory access makes the total speedup unexpectedly large, making the program is faster than the number of processes.
+
 
 
 
