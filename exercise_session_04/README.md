@@ -52,8 +52,6 @@ chmod 700 file
 -rw-rw----+ 1 mrojanap uzh8 0 Oct 16 13:48 group_can_write.txt
 ```
 
----
-
 - Create a file and set its permissions to 000: I cannot read, write, or execute it. However, it's not lost. I can still change its permission so that I can have an access again.
 
 ```bash
@@ -113,7 +111,7 @@ permission = 700
 [eiger][mrojanap@eiger-ln001 measured]$ factor 31
 31: 31
 ```
-- Measure e code performance
+- Measure the code performance
 ```bash
 [eiger][mrojanap@eiger-ln001 measured]$ time ./isprime 4230283
 4230283 is prime
