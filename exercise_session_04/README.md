@@ -2,7 +2,7 @@
 
 <br>
 **Exercise 1 [File permissions]** <br>
-- All other users cannot access my $HOME directory, and vice versa <br>.
+- All other users cannot access my $HOME directory, and vice versa. <br>
 Members in my group can read and execute my $SCRATCH directory, and not write. Other users don't have any permission on this directory. <br>
 [eiger][mrojanap@eiger-ln004 exercise_session_04]$ ls -ld $HOME <br>
 drwx------ 2 mrojanap uzh8 4096 Oct 16 13:18 /users/mrojanap <br>
@@ -21,3 +21,30 @@ drwxr-xr-x 2 mrojanap uzh8 4096 Sep 19 14:25 plots <br>
 - No. I don't have any permission on this directory (all read, write, and execute, also access and examine what files are inside). Only the owner is allowed to do so. <br>
 [eiger][mrojanap@eiger-ln004 exercise_session_04]$ ls -ld /users/meberlei <br>
 drwx------ 2 meberlei uzh8 4096 Oct 15 11:28 /users/meberlei <br>
+
+- Command used to set the access permissions for a directory so only the owner has (full) access: rwx------ = (4+2+1) || 0 || 0 <br>
+chmod 700 file <br>
+
+- Create a text file on $SCRATCH: <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ cd $SCRATCH <br>
+[eiger][mrojanap@eiger-ln004 mrojanap]$ touch group_can_write.txt <br>
+[eiger][mrojanap@eiger-ln004 mrojanap]$ chmod 660 group_can_write.txt <br>
+[eiger][mrojanap@eiger-ln004 mrojanap]$ ls -l group_can_write.txt <br>
+-rw-rw----+ 1 mrojanap uzh8 0 Oct 16 13:48 group_can_write.txt <br>
+
+- Create a file and set its permissions to 000: <br>
+I cannot read, write, or execute it. However, it's not lost. I can still change its permission so that I can have an access again. <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ touch permission_000.txt <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ chmod 000 permission_000.txt <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ cat permission_000.txt <br>
+cat: permission_000.txt: Permission denied <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ vim permission_000.txt <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ chmod 700 permission_000.txt <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ cat permission_000.txt <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ vim permission_000.txt <br>
+[eiger][mrojanap@eiger-ln004 exercise_session_04]$ cat permission_000.txt <br>
+permission = 700 <br>
+
+
+
+
