@@ -45,6 +45,14 @@ cat: permission_000.txt: Permission denied <br>
 [eiger][mrojanap@eiger-ln004 exercise_session_04]$ cat permission_000.txt <br>
 permission = 700 <br>
 
+<br>
+**Exercise 2 [Bash scripting 1 - Regex - grep]** <br>
+- Regex
+1) end with 00: grep 00$ binary.txt
+2) start and end with 1: grep ^1.\*1$ binary.txt
+3) contain the pattern 110: grep .\*110.\* binary.txt
+4) contain at least three times a 1: grep .\*1.\*1.\*1.\* binary.txt
+5) contain at least three consecutive 1s: grep .\*111.\* binary.txt
 
 
 
