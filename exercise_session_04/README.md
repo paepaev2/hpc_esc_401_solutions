@@ -97,3 +97,35 @@ permission = 700
    ```bash
    grep .*111.* binary.txt
    ```
+
+---
+
+## **Exercise 3 [Bash scripting 2 - Is this a prime number?]**
+
+---
+
+- `factor` command: prints prime factors of the input integer
+- Output of `factor` command: INPUT_INTEGER: LIST_OF_ITS_PRIME_FACTORS
+- 20 vs 31: more than one factor and only one factor, which is itself
+```bash
+[eiger][mrojanap@eiger-ln001 measured]$ factor 20
+20: 2 2 5
+[eiger][mrojanap@eiger-ln001 measured]$ factor 31
+31: 31
+```
+- Measure e code performance
+```bash
+[eiger][mrojanap@eiger-ln001 measured]$ time ./isprime 4230283
+4230283 is prime
+
+real	0m0.014s
+user	0m0.005s
+sys	0m0.008s
+[eiger][mrojanap@eiger-ln001 measured]$ time ./isprime 4572862171001
+4572862171001 is prime
+
+real	0m0.011s
+user	0m0.004s
+sys	0m0.007s
+```
+ 

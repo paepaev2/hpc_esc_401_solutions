@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+  echo "ERROR: The given input does not have exactly 1 argument: $@"
+  exit 1
+fi
+
+n="$1"
+
+if ! [[ "$n" =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
+  echo "ERROR: The given input is not a number: $n"
+  exit 1
+fi
+
+if ! [[ "$n" =~ ^[0-9]+$ ]]; then
+  echo "ERROR: The given input is not a positive integer: $n"
+  exit 1
+fi
+
+factors=$(factor "$n")
+num_fields=$(echo "$factors" | wc -w)
+
+if [ "$num_fields" -eq 2 ]; then
+  echo "$n is prime"
+else
+  echo "$n is composite"
+fi
