@@ -17,4 +17,5 @@ I am processor 3 out of 4, and the sum is 6
 I am processor 1 out of 4, and the sum is 6
 ```
 This solved the deadlock problem because even ranks send first (to odd ranks on thier right), while odd ranks receive first (ready to accept from even ranks on their left). This breaks the circular wait condition since at least some send/receive pairs can complete, allowing the communication to progress. <br>
-It's not an optimal solution because it serializes the communication; only half the processes can communicate simultaneously. The even processes can't receive until their send is done, and the odd processes can't send until their receive is done.
+It's not an optimal solution because it serializes the communication; only half the processes can communicate simultaneously. The even processes can't receive until their send is done, and the odd processes can't send until their receive is done. <br>
+- `Irecv-Isend-Waitall` and `Isend-Irecv-Waitall` are better than synchronous communication in this problem because it eliminates the circular wait. After each process proposes its requests, all requests are performed simultaneously without waiting for another process to start a call.
