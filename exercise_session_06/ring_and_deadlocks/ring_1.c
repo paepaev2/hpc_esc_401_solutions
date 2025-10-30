@@ -25,8 +25,14 @@ int main(int argc, char** argv) {
     //     update the send buffer
     //     update the local sum
     for (int i=0; i<size; i++) {
-        MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 0, MPI_COMM_WORLD);
-        MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	if (my_rank%2 == 0) {
+	    MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 0, MPI_COMM_WORLD);
+	    MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	} else {
+	    MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	    MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 0, MPI_COMM_WORLD);
+	}
+
 	my_sum += recv_rank;
 	send_rank = recv_rank;
     }
