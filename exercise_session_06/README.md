@@ -33,3 +33,35 @@ srun: job 5897752 queued and waiting for resources
 srun: job 5897752 has been allocated resources
 Approximated value of pi = 3.141593
 ```
+
+---
+
+## **Exercise 3 [MPI Poisson solver]**
+
+---
+
+```{bash}
+[eiger][mrojanap@eiger-ln004 poisson_MPI]$ grep "Step " log_1_proc.txt | tail -n 1
+Step 19366, Diff=9.99451e-09
+[eiger][mrojanap@eiger-ln004 poisson_MPI]$ grep "Step " log_4_proc.txt | tail -n 1
+Step 19366, Diff=9.99451e-09
+[eiger][mrojanap@eiger-ln004 poisson_MPI]$ grep "Step " log_128_proc.txt | tail -n 1
+Step 19366, Diff=9.99451e-09
+```
+- Performance: <br>
+`n=1` <br>
+- real	0m14.077s
+- user	0m0.035s
+- sys	0m0.235s
+<br>
+`n=4` <br>
+- real	0m16.886s
+- user	0m0.059s
+- sys	0m0.620s
+<br>
+`n=128` <br>
+-real	1m18.292s
+-user	0m1.706s
+-sys	0m16.442s
+<br>
+Adding more processes makes the program run slower because of a performance bottleneck from communication time. Even though the computation time reduces, it is not enough to pay for the cost of increased communication.

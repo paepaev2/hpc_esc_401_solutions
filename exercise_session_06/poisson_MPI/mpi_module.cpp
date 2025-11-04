@@ -17,47 +17,54 @@ int close_MPI(){
 }
 
 int mpi_get_domain(int nx, int ny, int my_rank, int size, int* min_x, int* max_x, int* min_y, int* max_y){
-	/*
-	define corners or local domains
-	*/
+    // Method II: Share remnant
+
+    int slice_size = nx / size;
+    int remnant = nx % size;
+
+    if (my_rank < remnant) {
+	*min_x = my_rank * (slice_size + 1);
+	*max_x = *min_x + (slice_size + 1);
+    } else {
+	*min_x = remnant * (slice_size + 1) + (my_rank - remnant) * slice_size;
+	*max_x = *min_x + slice_size;
+    }
+
+    *min_y = 0;
+    *max_y = ny;
+
     printf("in mpi_get_domain() in mpi_module.cpp,  define corners of the local domains\n");
 
-	printf("I am rank %d and my domain is: xmin, xmax, ymin, ymax: %d %d %d %d\n",my_rank,*min_x,*max_x,*min_y,*max_y);
-	return 0;
+    printf("I am rank %d and my domain is: xmin, xmax, ymin, ymax: %d %d %d %d\n",my_rank,*min_x,*max_x,*min_y,*max_y);
+    return 0;
 }
 
 int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, double* fromRight){
-	
-	/*this function, vectors fromLeft and fromRight should be received from the neighbours of my_rank process*/
-	/*if you want to implement also cartesian topology, you need fromTop and fromBottom in addition to fromLeft a
-	nd fromRight*/
+    // Method II: Use non-blocking MPI_Isend, MPI_Irecv, and MPI_Waitall
 
-	for (int j=0;j<(p.ymax - p.ymin);j++) {fromLeft[j] = 0; fromRight[j] = 0;} //initialize fromLeft and fromRight
+    int rank_left = (my_rank == 0) ? MPI_PROC_NULL : my_rank - 1;
+    int rank_right = (my_rank == size - 1) ? MPI_PROC_NULL : my_rank + 1;
 
-    /* define columns to be sent to right neighbour and to the left neighbour, 
-    also receive one both form left and right neighbour*/
+    double* column_to_right = new double [p.ymax - p.ymin];
+    for (int j=0;j<(p.ymax - p.ymin);j++) column_to_right[j] = u[p.xmax - p.xmin - 1][j]; 
+    double* column_to_left = new double [p.ymax - p.ymin];
+    for (int j=0;j<(p.ymax - p.ymin);j++) column_to_left[j] = u[0][j]; 
 
-    /* choose either to define MPIcolumn_type (lines 43-45) or define 
-    the columns to be sent manually (lines 53-56)*/
+    MPI_Request requests[4];
+    
+    MPI_Irecv(fromLeft, p.ymax - p.ymin, MPI_DOUBLE, rank_left, 1, MPI_COMM_WORLD, &requests[0]);
+    MPI_Irecv(fromRight, p.ymax - p.ymin, MPI_DOUBLE, rank_right, 0, MPI_COMM_WORLD, &requests[1]);
 
-    // MPI_Datatype column_type;
-    // MPI_Type_vector(p.ymax - p.ymin, 1, p.xmax - p.xmin, MPI_DOUBLE, &column_type);
-    // MPI_Type_commit(&column_type);
+    MPI_Isend(column_to_left, p.ymax - p.ymin, MPI_DOUBLE, rank_left, 0, MPI_COMM_WORLD, &requests[2]);
+    MPI_Isend(column_to_right, p.ymax - p.ymin, MPI_DOUBLE, rank_right, 1, MPI_COMM_WORLD, &requests[3]);
 
-    // ...some code goes here and then do not forget to free the column_type
+    MPI_Waitall(4, requests, MPI_STATUSES_IGNORE);
 
-    // MPI_Type_free(&column_type);
+    free(column_to_right);
+    free(column_to_left);
 
-	//or alternative approach below
-
-	// double* column_to_right = new double [p.ymax - p.ymin];
-	// for (int j=0;j<(p.ymax - p.ymin);j++) column_to_right[j] = u[p.xmax - p.xmin - 1][j]; 
-	// double* column_to_left = new double [p.ymax - p.ymin];
-	// for (int j=0;j<(p.ymax - p.ymin);j++) column_to_left[j] = u[0][j]; 
-
-
-	printf("mpi_module.cpp, define halo comm:  \n");
-	return 0;
+    printf("mpi_module.cpp, define halo comm:  \n");
+    return 0;
 }
 
 

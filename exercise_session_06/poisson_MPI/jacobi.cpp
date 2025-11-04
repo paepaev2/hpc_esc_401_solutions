@@ -12,17 +12,25 @@
  * @return     Returns \sqrt{\sum(mat1_{ij} - mat2_{ij})^2/(nx*ny)}
  */
 double norm_diff(params p, double** mat1, double** mat2){
+    double global_sum_sq=0.,local_sum_sq=0., diff=0.;
+    
+    for (int i=0; i<p.xmax - p.xmin; i++){
+	if (p.xmin + i == 0 || p.xmin + i == p.nx - 1) continue;
 
-    printf("Here, in norm_diff() function, change the serial implementation to MPI setup\n");
-    double ret=0., diff=0.;
-    for (int i=0; i<p.nx; i++){
-        for (int j=0; j<p.ny; j++){
+        for (int j=0; j<p.ymax - p.ymin; j++){
+	    if (p.ymin + j == 0 || p.ymin + j == p.ny - 1) continue;
+
             diff = mat1[i][j] - mat2[i][j];
-            ret += diff*diff;
+            local_sum_sq += diff*diff;
         }
     }
-    ret = sqrt(ret/(p.nx*p.ny));
-    return ret;
+
+    ALLREDUCE(&local_sum_sq, &global_sum_sq);
+
+    double N_total = (double)p.nx * p.ny;
+    double global_norm = sqrt(global_sum_sq / N_total);
+    
+    return global_norm;
 }
 
 /**
@@ -56,8 +64,29 @@ void jacobi_step(params p, double** u_new, double** u_old, double** f, int my_ra
             if (j==0 || j==p.ny-1) continue;
             int idx = i-p.xmin;
             int idy = j-p.ymin;
-            u_new[idx][idy] = 0.25*(u_old[idx-1][idy] + u_old[idx+1][idy] + u_old[idx][idy-1] + u_old[idx][idy+1] - dx*dy*f[idx][idy]);
-        }
+
+	    double u_left, u_right, u_bottom, u_top;
+
+            u_bottom = u_old[idx][idy-1];
+            u_top    = u_old[idx][idy+1];
+
+            if (i == p.xmin) {
+                u_left = fromLeft[idy];
+            } else {
+                u_left = u_old[idx-1][idy];
+            }
+
+            if (i == p.xmax - 1) {
+                u_right = fromRight[idy];
+            } else {
+		u_right = u_old[idx+1][idy];
+            }
+
+	    u_new[idx][idy] = 0.25*(u_left + u_right + u_bottom + u_top - dx*dy*f[idx][idy]);
+	}
     }
     if (p.nx!=p.ny) printf("In function jacobi_step (jacobi.cpp l.26): nx != ny, check jacobi updates\n");
+
+    free(fromLeft);
+    free(fromRight);
 }
