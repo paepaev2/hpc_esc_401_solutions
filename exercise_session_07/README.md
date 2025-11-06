@@ -52,23 +52,23 @@ Pointer are used extensively both in C and C++. Pointers are variables storing a
 ## **Exercise 2 [More Pointers]**
 
 ---
-<br>
+
 ### Answer the following questions: <br>
 **a. What data type is M (integer, pointer to integer, . . . )?**
 > pointer to pointer to integer (`int**`)
 
 **b. What are `M`, `*M`, `**M`?**
-> `M` (`int**`) = memory address where `M[0]` is stored
-> `*M` (`int*`) = `M[0]`
-> `**M` (`int`) = `M[0][0]` = `0` 
+> - `M` (`int**`) = memory address where `M[0]` is stored
+> - `*M` (`int*`) = `M[0]`
+> - `**M` (`int`) = `M[0][0]` = `0`
 
-**c. What is M[1][3], *(M[0]+1), *(*(M+1)+3)?**
-> `M[1][3]` = `8`
-> `*(M[0]+1)` = `M[0][1]` = `1`
-> `*(*(M+1)+3)` = `M[1][3]` = `8`
+**c. What is `M[1][3]`, `*(M[0]+1)`, `*(*(M+1)+3)`?**
+> - `M[1][3]` = `8`
+> - `*(M[0]+1)` = `M[0][1]` = `1`
+> - `*(*(M+1)+3)` = `M[1][3]` = `8`
 
-**d. Are the M[0] and M[1] arrays stored next to each other in the memory? In other words,
-is it true that *(M[0]+5)==M[1][0]?**
+**d. Are the `M[0]` and `M[1]` arrays stored next to each other in the memory? In other words,
+is it true that `*(M[0]+5)==M[1][0]`?**
 > Not necessarily to be stored next to each other, and `*(M[0]+5)` results in `undefined behavior`
 
 
