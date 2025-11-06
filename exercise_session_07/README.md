@@ -72,3 +72,38 @@ is it true that `*(M[0]+5)==M[1][0]`?**
 > Not necessarily to be stored next to each other, and `*(M[0]+5)` results in `undefined behavior`
 
 
+---
+
+## **Exercise 3 [Array strides]**
+
+---
+
+### Answer the following questions: <br>
+**a. Which variable (x or y) tells you which row it is, and which tells you the column?**
+> - row: `y`
+> - column: `x`
+
+**b. How many total elements are in the table?**
+> 6\*14 = `84`
+
+**c. Are the elements (1, 3) and (1, 4) adjacent in memory, or is it rather (1, 3) and (2, 3)?**
+> - row-major: (1, 3) and (1, 4) are adjacent
+> - column-major: (1, 3) and (2, 3) are adjacent
+
+**d. Is one of these choices “better”? Why or why not?**
+> Neither is generally better. It depends on how data is frequently accessed, `row by row` or `column by column`
+
+**e. From now on assume “row-major” order, meaning that elements in each row are adjacent to each other. The “stride” tells you the distance between elements in the given direction. What is the stride for the x dimension?**
+> 1
+
+**f. What is the stride of the y dimension?**
+> 14
+
+**g. Remember again that elements are stored adjacent in memory. Assume that rows are stored adjacent to each other. This means that if you have a table of integers (`int *A`) then the element (0, 0) is at A[0], element (0, 1) is at A[1] and so on. Where is element (0, 10)?**
+> A[10]
+
+**h. Where is element (3, 0)?**
+> A[42]
+
+**i. Where is element (7, 4)?**
+> `out of bounds`
