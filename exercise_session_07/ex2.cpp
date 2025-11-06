@@ -36,6 +36,14 @@ int main() {
     std::cout << "M2" << std::endl;
     printMatrix(M2);
 
+    delete[] *(M + 0);
+    delete[] *(M + 1);
+    delete[] M;
+
+    delete[] *(M2 + 0);
+    delete[] *(M2 + 1);
+    delete[] M2;
+
     return 0;
 }
 
