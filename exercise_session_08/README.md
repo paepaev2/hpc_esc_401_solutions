@@ -16,3 +16,17 @@ PI = 3.141592653589793 computed in 0.001135 seconds
 
 No, each iteration does not have the same runtime.
 The first iteration is significantly slower due to the GPU initialization.
+
+
+---
+
+## **Exercise 2 [Compute PI - CUDA]**
+
+---
+
+```bash
+PI = 3.14159265358979 computed in 0.04896 seconds
+```
+
+The execution time is not the same with the result from exercise 1 since there is a difference between GPU initialization for OpenAcc and kernel compilation for CUDA.
+

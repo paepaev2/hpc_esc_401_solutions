@@ -1,0 +1,12 @@
+#!/bin/bash -l
+#SBATCH --job-name=cpi_cuda_parallel
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --constraint=gpu
+#SBATCH --output=output_cpi_cuda_parallel.log
+#SBATCH --time=00:05:00
+
+nvcc -arch=sm_90 cpi_cuda.cu gettime.c -o cpi_cuda_parallel
+
+srun ./cpi_cuda_parallel
