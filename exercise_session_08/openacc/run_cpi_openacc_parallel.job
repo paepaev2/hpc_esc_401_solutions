@@ -1,0 +1,12 @@
+#!/bin/bash -l
+#SBATCH --job-name=cpi_openacc_parallel
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --constraint=gpu
+#SBATCH --output=output_cpi_openacc_parallel.log
+#SBATCH --time=00:05:00
+
+nvc -O3 -acc -gpu=cc90 cpi_openacc.c gettime.c -o cpi_openacc_parallel
+
+srun ./cpi_openacc_parallel
