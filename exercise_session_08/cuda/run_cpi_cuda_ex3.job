@@ -1,0 +1,27 @@
+#!/bin/bash -l
+#SBATCH --job-name=cpi_cuda_ex3
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --constraint=gpu
+#SBATCH --output=output_cpi_cuda_ex3.log
+#SBATCH --time=00:30:00
+
+nvcc -arch=sm_90 cpi_cuda_ex3.cu gettime.c -o cpi_cuda_ex3
+
+NUM_BLOCKS=(60 120 180 240 300 360 420 600)
+NUM_THREADS=(16 32 48 64 80 96 112 128 144 160)
+
+RESULTS_FILE="cpi_cuda_ex3_results.csv"
+echo "NUM_BLOCK,NUM_THREAD,TIME_SECONDS,PI_VALUE" > $RESULTS_FILE
+
+for nblock in "${NUM_BLOCKS[@]}"; do
+    for nthread in "${NUM_THREADS[@]}"; do
+	OUTPUT=$(srun ./cpi_cuda_ex3 $nblock $nthread)
+
+	TIME=$(echo "$OUTPUT" | grep "computed in" | awk '{print $6}')
+        PI=$(echo "$OUTPUT" | grep "PI =" | awk '{print $3}')
+        
+	echo "$nblock,$nthread,$TIME,$PI" >> $RESULTS_FILE
+    done
+done
