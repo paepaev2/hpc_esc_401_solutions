@@ -1,0 +1,32 @@
+Failing in Thread:1
+Accelerator Fatal Error: call to cuStreamSynchronize returned error 700 (CUDA_ERROR_ILLEGAL_ADDRESS): Illegal address during kernel execution
+ File: /users/mrojanap/hpc_esc_401_solutions/exercise_session_09/basics/blur_openacc.cpp
+ Function: _Z20blur_twice_gpu_naivePdS_ii:49
+ Line: 52
+
+srun: error: nid005331: task 0: Exited with exit code 1
+srun: Terminating StepId=2113422.12
+Failing in Thread:1
+Accelerator Fatal Error: call to cuStreamSynchronize returned error 700 (CUDA_ERROR_ILLEGAL_ADDRESS): Illegal address during kernel execution
+ File: /users/mrojanap/hpc_esc_401_solutions/exercise_session_09/basics/blur_openacc.cpp
+ Function: _Z20blur_twice_gpu_naivePdS_ii:49
+ Line: 52
+
+srun: error: nid005331: task 0: Exited with exit code 1
+srun: Terminating StepId=2113422.13
+Failing in Thread:1
+Accelerator Fatal Error: call to cuStreamSynchronize returned error 700 (CUDA_ERROR_ILLEGAL_ADDRESS): Illegal address during kernel execution
+ File: /users/mrojanap/hpc_esc_401_solutions/exercise_session_09/basics/blur_openacc.cpp
+ Function: _Z20blur_twice_gpu_naivePdS_ii:49
+ Line: 52
+
+srun: error: nid005331: task 0: Exited with exit code 1
+srun: Terminating StepId=2113422.14
+Failing in Thread:1
+Accelerator Fatal Error: call to cuStreamSynchronize returned error 700 (CUDA_ERROR_ILLEGAL_ADDRESS): Illegal address during kernel execution
+ File: /users/mrojanap/hpc_esc_401_solutions/exercise_session_09/basics/blur_openacc.cpp
+ Function: _Z20blur_twice_gpu_naivePdS_ii:49
+ Line: 52
+
+srun: error: nid005331: task 0: Exited with exit code 1
+srun: Terminating StepId=2113422.15

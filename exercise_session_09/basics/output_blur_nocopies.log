@@ -1,0 +1,104 @@
+Running with N = 10 (problem size = 2^10):
+--- Running with nsteps = 50 ---
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+Host version took 0.000135292 s (2.70584e-06 s/step)
+GPU version took 2.81465 s (0.056293 s/step)
+
+--- Running with nsteps = 100 ---
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+Host version took 0.000181402 s (1.81402e-06 s/step)
+GPU version took 2.61466 s (0.0261466 s/step)
+
+--- Running with nsteps = 200 ---
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+Host version took 0.00030143 s (1.50715e-06 s/step)
+GPU version took 2.59219 s (0.0129609 s/step)
+
+--- Running with nsteps = 500 ---
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+Host version took 0.000471632 s (9.43264e-07 s/step)
+GPU version took 2.58751 s (0.00517501 s/step)
+
+
+Running with N = 16 (problem size = 2^16):
+--- Running with nsteps = 50 ---
+dispersion 1D test of length n = 65540 : 0.500031MB
+==== success ====
+Host version took 0.0021031 s (4.2062e-05 s/step)
+GPU version took 2.56345 s (0.0512689 s/step)
+
+--- Running with nsteps = 100 ---
+dispersion 1D test of length n = 65540 : 0.500031MB
+==== success ====
+Host version took 0.00390167 s (3.90167e-05 s/step)
+GPU version took 2.55508 s (0.0255508 s/step)
+
+--- Running with nsteps = 200 ---
+dispersion 1D test of length n = 65540 : 0.500031MB
+==== success ====
+Host version took 0.00798182 s (3.99091e-05 s/step)
+GPU version took 2.61967 s (0.0130984 s/step)
+
+--- Running with nsteps = 500 ---
+dispersion 1D test of length n = 65540 : 0.500031MB
+==== success ====
+Host version took 0.0197254 s (3.94509e-05 s/step)
+GPU version took 2.65388 s (0.00530776 s/step)
+
+
+Running with N = 22 (problem size = 2^22):
+--- Running with nsteps = 50 ---
+dispersion 1D test of length n = 4194308 : 32MB
+==== success ====
+Host version took 0.153135 s (0.00306269 s/step)
+GPU version took 2.68044 s (0.0536088 s/step)
+
+--- Running with nsteps = 100 ---
+dispersion 1D test of length n = 4194308 : 32MB
+==== success ====
+Host version took 0.288394 s (0.00288394 s/step)
+GPU version took 2.57479 s (0.0257479 s/step)
+
+--- Running with nsteps = 200 ---
+dispersion 1D test of length n = 4194308 : 32MB
+==== success ====
+Host version took 0.569825 s (0.00284913 s/step)
+GPU version took 2.72073 s (0.0136036 s/step)
+
+--- Running with nsteps = 500 ---
+dispersion 1D test of length n = 4194308 : 32MB
+==== success ====
+Host version took 1.42754 s (0.00285509 s/step)
+GPU version took 2.82789 s (0.00565577 s/step)
+
+
+Running with N = 28 (problem size = 2^28):
+--- Running with nsteps = 50 ---
+dispersion 1D test of length n = 268435460 : 2048MB
+==== success ====
+Host version took 12.1533 s (0.243065 s/step)
+GPU version took 3.14859 s (0.0629718 s/step)
+
+--- Running with nsteps = 100 ---
+dispersion 1D test of length n = 268435460 : 2048MB
+==== success ====
+Host version took 24.195 s (0.24195 s/step)
+GPU version took 3.33781 s (0.0333781 s/step)
+
+--- Running with nsteps = 200 ---
+dispersion 1D test of length n = 268435460 : 2048MB
+==== success ====
+Host version took 48.1542 s (0.240771 s/step)
+GPU version took 3.73359 s (0.0186679 s/step)
+
+--- Running with nsteps = 500 ---
+dispersion 1D test of length n = 268435460 : 2048MB
+==== success ====
+Host version took 120.012 s (0.240023 s/step)
+GPU version took 4.91204 s (0.00982407 s/step)
+
+

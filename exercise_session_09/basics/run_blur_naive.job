@@ -1,0 +1,19 @@
+#!/bin/bash -l
+#SBATCH --job-name=blur_naive
+#SBATCH --account=uzh8
+#SBATCH --constraint=gpu
+#SBATCH --cpus-per-task=1
+#SBATCH --output=output_blur_naive.log
+#SBATCH --error=error_blur_naive.log
+
+Ns=(10 16 22 28)
+nsteps=(50 100 200 500)
+for N in "${Ns[@]}"; do
+    echo "Running with N = $N (problem size = 2^$N):"
+    for nstep in "${nsteps[@]}"; do
+	echo "--- Running with nsteps = $nstep ---"
+	srun -n 1 ./blur.openacc $N $nstep
+	echo ""
+    done
+    echo ""
+done
