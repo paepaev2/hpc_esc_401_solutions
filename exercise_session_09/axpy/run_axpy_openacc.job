@@ -1,0 +1,15 @@
+#!/bin/bash -l
+#SBATCH --job-name=axpy_openacc
+#SBATCH --account=uzh8
+#SBATCH --constraint=gpu
+#SBATCH --cpus-per-task=1
+#SBATCH --output=output_axpy_openacc.log
+#SBATCH --error=error_axpy_openacc.log
+
+Ns=(10 16 22 28)
+for N in "${Ns[@]}"; do
+    echo "Running with N = $N (problem size = 2^$N):"
+    srun -n 1 ./axpy.openacc $N
+    echo ""
+    echo ""
+done

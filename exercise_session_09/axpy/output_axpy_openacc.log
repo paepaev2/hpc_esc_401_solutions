@@ -1,0 +1,44 @@
+Running with N = 10 (problem size = 2^10):
+memcopy and daxpy test of size 1024
+-------
+timings
+-------
+axpy (openmp): 4.16e-06 s
+axpy (openacc): 2.82196 s
+
+============ PASSED
+
+
+Running with N = 16 (problem size = 2^16):
+memcopy and daxpy test of size 65536
+-------
+timings
+-------
+axpy (openmp): 2.3648e-05 s
+axpy (openacc): 2.5851 s
+
+============ PASSED
+
+
+Running with N = 22 (problem size = 2^22):
+memcopy and daxpy test of size 4194304
+-------
+timings
+-------
+axpy (openmp): 0.00186027 s
+axpy (openacc): 2.61231 s
+
+============ PASSED
+
+
+Running with N = 28 (problem size = 2^28):
+memcopy and daxpy test of size 268435456
+-------
+timings
+-------
+axpy (openmp): 0.177737 s
+axpy (openacc): 2.74794 s
+
+============ PASSED
+
+
