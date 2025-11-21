@@ -26,3 +26,14 @@ See the result in `./axpy/output_axpy_openacc.log`
 - Execution time
     - For small size problems: The GPU overhead dominates, making CPU faster.
     - For large size problems: The GPU's parallel processing overcomes the overhead, making significant speedups compared to CPU.
+
+
+---
+
+## **Exercise 3 [basics/dot]**
+
+---
+
+- `dot_gpu` function is prone to `race conditions` because multiple threads will try to update the same shared variable `sum` simultaneously (at `sum += x[i]*y[i]`).
+- Keyword used to prevent this: `reduction`
+- The GPU version is much slower than the CPU version for all test sizes. The main problem is that it takes too long to move data back and forth between the host and the GPU, which wastes more time than the GPU saves by doing the simple calculations like this dot product faster. 

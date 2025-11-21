@@ -1,0 +1,35 @@
+Running with N = 2 (problem size = 2^2):
+dot product OpenACC of length n = 4 : 3.05176e-05MB
+expected 42 got 42: success
+Host kernel took 0.000103196 s
+GPU kernel took 2.82482 s
+
+
+Running with N = 10 (problem size = 2^10):
+dot product OpenACC of length n = 1024 : 0.0078125MB
+expected 9286 got 9286: success
+Host kernel took 0.000118684 s
+GPU kernel took 2.63416 s
+
+
+Running with N = 16 (problem size = 2^16):
+dot product OpenACC of length n = 65536 : 0.5MB
+expected 588374 got 588374: success
+Host kernel took 0.000150011 s
+GPU kernel took 2.6931 s
+
+
+Running with N = 22 (problem size = 2^22):
+dot product OpenACC of length n = 4194304 : 32MB
+expected 3.77762e+07 got 3.77762e+07: success
+Host kernel took 0.00193799 s
+GPU kernel took 2.558 s
+
+
+Running with N = 28 (problem size = 2^28):
+dot product OpenACC of length n = 268435456 : 2048MB
+expected 2.41598e+09 got 2.41598e+09: success
+Host kernel took 0.177695 s
+GPU kernel took 2.85581 s
+
+
