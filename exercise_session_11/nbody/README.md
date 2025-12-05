@@ -53,3 +53,28 @@ From **Table 2 (Sample Profile by Group, Function, and Line):**
    - This confirms the program is **memory-bandwidth limited**, not CPU-limited.
 
 ---
+
+
+---
+
+## **Exercise 2 [Single and Double precision]**
+
+---
+
+- `sqrt`:
+```bash
+[eiger][mrojanap@eiger-ln003 nbody]$ time ./nbody
+
+real	0m12.761s
+user	0m12.753s
+sys	0m0.004s
+```
+
+- `sqrtf`:
+```bash
+[eiger][mrojanap@eiger-ln003 nbody]$ time ./nbody
+
+real	0m7.199s
+user	0m7.191s
+sys	0m0.005s
+```
