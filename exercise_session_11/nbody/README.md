@@ -100,3 +100,20 @@ Timing: 7.104 seconds (no improvement from sqrtf version)
     - While SoA provides better memory layout (a prerequisite for SIMD), it doesn't guarantee vectorization
     - The compiler needs additional help (pragmas, intrinsics, or code restructuring) to vectorize this particular loop
     - Since 99% of runtime is in the non-vectorized forces() function, we see no speedup
+
+
+---
+
+## **Exercise 4 [Eliminate Divergence]**
+
+---
+
+```bash
+[eiger][mrojanap@eiger-ln003 nbody]$ time ./nbody
+
+real	0m1.530s
+user	0m1.528s
+sys	0m0.001s
+```
+
+
