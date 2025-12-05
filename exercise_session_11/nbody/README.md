@@ -117,3 +117,31 @@ sys	0m0.001s
 ```
 
 
+---
+
+## **Exercise 5 [OpenMP]**
+
+---
+
+- No data dependencies: Each iteration of the i loop is independent. They read shared data but write to different locations. No synchronization (atomic updates) is needed.
+
+- time OpenMP
+```bash
+[eiger][mrojanap@eiger-ln003 nbody]$ time ./nbody
+
+real	0m0.068s
+user	0m6.437s
+sys	0m0.035s
+```
+
+- time 500'000
+```bash
+[eiger][mrojanap@eiger-ln003 nbody]$ time ./nbody
+
+real	0m2.032s
+user	3m13.074s
+sys	0m0.072s
+```
+
+- `real`: actual elapsed time from start to finish, including waiting for resources, I/O, etc.
+- `user`: sum of CPU time across all cores = time spent executing your code

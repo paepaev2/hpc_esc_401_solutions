@@ -39,6 +39,7 @@ void ic(particles &plist, int n) {
 
 void forces(particles &plist) {
     int n = plist.x.size();
+    #pragma omp parallel for
     for(int i=0; i<n; ++i) { 		// We want to calculate the force on all particles
 	float ax=0, ay=0, az=0;
 	
@@ -71,7 +72,7 @@ void forces(particles &plist) {
 }
 
 int main(int argc, char *argv[]) {
-    int N=50'000;
+    int N=500'000;
     particles plist;
     ic(plist,N);
     forces(plist);
