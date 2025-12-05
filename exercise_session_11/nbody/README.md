@@ -6,33 +6,50 @@
 
 ---
 
-- Which parts of the code took the most CPU time?
-From Table 2 (Sample Profile by Group, Function, and Line):
+### **Which parts of the code took the most CPU time?**
 
-100% of CPU time was spent in the main function (specifically the forces function call)
-Within the hot code paths:
-Line 38: 2.9% (37 samples) - auto dx = plist[j].x - plist[i].x;
-Line 39: 23.6% (302 samples) - auto dy = plist[j].y - plist[i].y;
-Line 40: 56.7% (725 samples) - auto dz = plist[j].z - plist[i].z;
-Combined: 83.2% in the distance calculation
-16.8% in STL vector operations
+From **Table 2 (Sample Profile by Group, Function, and Line):**
 
-This makes sense because
-1. O(N^2) complexity: The forces() function has nested loops computing all pairwise interactions for N=50,000 particles, resulting in 2.5 billion operations
-2. Lines 38-40 dominate because they're in the innermost loop and involve memory accesses to plist[j] and plist[i]
-3. Memory bandwidth: The code is memory-bound, repeatedly accessing particle data from different memory locations
-4. Execution time: 12.84 seconds for a simple calculation indicates the quadratic scaling
+- **100% of CPU time** was spent in the `main` function, specifically inside the **`forces()`** function.
+- Hot code paths:
+  - **Line 38:** 2.9% (37 samples) — `auto dx = plist[j].x - plist[i].x;`
+  - **Line 39:** 23.6% (302 samples) — `auto dy = plist[j].y - plist[i].y;`
+  - **Line 40:** 56.7% (725 samples) — `auto dz = plist[j].z - plist[i].z;`
+- **Total:**
+  - **83.2%** spent on distance calculations (`dx`, `dy`, `dz`)
+  - **16.8%** spent in STL vector operations
 
-- What you can learn about the performance of your code
-1. Performance Hotspot: 83.2% of CPU time is spent in the forces() function's nested loop:
-Line 40 (dz calculation): 56.7% of samples
-Line 39 (dy calculation): 23.6% of samples
-Line 38 (dx calculation): 2.9% of samples
-2. Why These Lines Dominate:
-- The O(N^2) algorithm performs 2.5 billion pairwise calculations (50,000^2)
-- Memory-bound workload: The CPU spends most time waiting for data from memory
-- Poor cache locality due to random access patterns in the nested loop
-- Line 40 shows highest samples because it's where memory latency becomes most visible
-3. Energy Analysis:
-- Memory consumed 1,528 J (51% of total energy)
-- This confirms the code is memory-bandwidth limited, not compute-limited
+**Why this happens:**
+
+1. **O(N²) complexity:**  
+   `forces()` computes all pairwise interactions for **N = 50,000** particles → **2.5 billion operations**.
+
+2. **Innermost loop dominates:**  
+   Lines 38–40 run for every pair and frequently load data from memory.
+
+3. **Memory bandwidth bottleneck:**  
+   The code is **memory-bound**, not compute-bound.
+
+4. **Execution time fits this behavior:**  
+   The full computation takes **12.84 seconds**, consistent with quadratic scaling.
+
+---
+
+### **What you can learn about the performance of your code**
+
+1. **Performance Hotspots**
+   - Line 40 (dz): **56.7%**
+   - Line 39 (dy): **23.6%**
+   - Line 38 (dx): **2.9%**
+
+2. **Why these lines dominate**
+   - O(N²) → **2.5 billion** iterations.
+   - **Memory-bound workload:** CPU waits for memory more than it computes.
+   - **Poor cache locality:** Accessing `plist[j]` for each `i` is costly.
+   - Line 40 shows the most samples likely due to repeated memory latency at that point.
+
+3. **Energy Analysis**
+   - Memory consumed **1,528 J (51% of total energy)**.
+   - This confirms the program is **memory-bandwidth limited**, not CPU-limited.
+
+---
