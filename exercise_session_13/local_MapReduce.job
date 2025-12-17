@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat trump_tweets_*.csv | \
+    python mapper3.py | \
+    sort -k1,1 | \
+    python reducer3.py > local_output.txt
